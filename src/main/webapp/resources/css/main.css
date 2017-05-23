@@ -1,0 +1,691 @@
+/*
+
+    Template Author : http://pixelhint.com
+    Author Email    : contact@pixelhint.com
+    Template Name   : Resto
+    
+    
+    *****************************************
+    
+    
+    - fonts
+    - general css
+    - header
+    - hero
+    - menu
+    - featured dishes
+    - gallery
+    - footer
+    
+*/
+
+
+
+/*  Fonts  */
+@font-face {
+    font-family: 'wcmanonegrabta';
+    src: url('../fonts/wcmanonegrabta.eot');
+    src: url('../fonts/wcmanonegrabta.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/wcmanonegrabta.woff') format('woff'),
+         url('../fonts/wcmanonegrabta.ttf') format('truetype'),
+         url('../fonts/wcmanonegrabta.svg#wcmanonegrabta') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleo-regular';
+    src: url('../fonts/aleo-regular.eot');
+    src: url('../fonts/aleo-regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/aleo-regular.woff') format('woff'),
+         url('../fonts/aleo-regular.ttf') format('truetype'),
+         url('../fonts/aleo-regular.svg#aleo-regular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleo-light';
+    src: url('../fonts/aleo-light.eot');
+    src: url('../fonts/aleo-light.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/aleo-light.woff') format('woff'),
+         url('../fonts/aleo-light.ttf') format('truetype'),
+         url('../fonts/aleo-light.svg#aleo-light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleo-italic';
+    src: url('../fonts/aleo-italic.eot');
+    src: url('../fonts/aleo-italic.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/aleo-italic.woff') format('woff'),
+         url('../fonts/aleo-italic.ttf') format('truetype'),
+         url('../fonts/aleo-italic.svg#aleo-italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'aleo-bold';
+    src: url('../fonts/aleo-bold.eot');
+    src: url('../fonts/aleo-bold.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/aleo-bold.woff') format('woff'),
+         url('../fonts/aleo-bold.ttf') format('truetype'),
+         url('../fonts/aleo-bold.svg#aleo-bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+/*  General CSS*/
+body{
+    background: #fff;
+}
+
+.wrapper{
+    width: 1166px;
+    margin: 0 auto;
+    position: relative;
+}
+
+h1, h2, h3, h4, h5 ,h6{
+    color: #626262;
+    font-family: "aleo-regular", arial;
+    letter-spacing: 1px;
+}
+
+h1              { font-size: 2em; margin: .67em 0 }
+h2              { font-size: 1.5em; margin: .75em 0 }
+h3              { font-size: 1.17em; margin: .83em 0 }
+h5              { font-size: .83em; margin: 1.5em 0 }
+h6              { font-size: .75em; margin: 1.67em 0 }
+h1, h2, h3, h4,
+h5, h6          { font-weight: bolder }
+
+.clearfix:before,  
+.clearfix:after {  
+    content: " ";  
+    display: table;  
+}  
+.clearfix:after {  
+    clear: both;  
+}  
+ 
+.clearfix {  
+    *zoom: 1;  
+}
+
+header nav ul li a,
+.featured_dishes .slider_nav a,
+.gallery .media section img,
+footer .footer_nav ul li a{
+    transition:all .3s linear;
+    -webkit-transition:all .3s linear;
+    -moz-transition:all .3s linear;
+    -o-transition:all .3s linear;
+}
+
+
+
+
+
+
+
+
+/*    header    */
+header{
+    width: 100%;
+    height: 110px;
+    background: #fff;
+    overflow: hidden;
+}
+
+header .logo{
+    float: left;
+    margin-top: 40px;
+}
+
+header nav{
+    float: right;
+}
+
+header nav ul{
+    list-style: none;
+    margin-top: 50px;
+}
+
+header nav ul li{
+    display: block;
+    float: left;
+    margin-left: 50px;
+}
+
+header nav ul li a{
+    text-decoration: none;
+    color: #3b3b3b;
+    font-family: "aleo-regular", arial;
+    font-size: 14px;
+    letter-spacing: .5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #fff;
+}
+
+header nav ul li a.active,
+header nav ul li a:hover{
+    color: #f34949;
+    border-bottom: 2px solid #f34949;
+}
+
+
+
+
+
+
+
+
+
+/*    hero    */
+.hero{
+    width: 100%;
+    height: 570px;
+    position: relative;
+    background: url('../img/taj3.jpg') no-repeat;     
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    overflow: hidden;
+}
+
+.hero .caption{
+    text-align: center;
+    margin-top: 220px;
+}
+
+.hero .caption h3{
+    color: #fff;
+    font-family: "wcmanonegrabta";
+    font-size: 100px;
+    letter-spacing: -5px;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.hero .caption h4{
+    color: #fff;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 29px 0 0 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+.hero .caption .rsep,
+.hero .caption .lsep{
+    width: 40px;
+    height: 1px;
+    display: inline-block;
+    background-color: #fff;
+    vertical-align: middle;
+}
+
+.hero .caption .rsep{
+    margin-right: 20px; 
+}
+.hero .caption .lsep{
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+/*    menu    */
+.menu{
+    width: 100%;
+    overflow: hidden;
+    border-top: 4px solid #f34949;
+    padding-bottom: 100px;
+}
+
+.menu .menu_title{
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.menu .menu_title h2{
+    display: inline-block;
+    margin: 0;
+    padding: 20px 25px 35px 25px;
+    background: url('../img/ribbon.svg') no-repeat;
+    background-position: 50% 0;
+
+    color: #fff;
+    font-family: "aleo-bold", arial;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.menu article{
+    width: 557px;
+}
+
+.menu .mean_menu{
+    overflow: hidden;
+}
+
+.menu .hidden_items{
+    display: none;
+    overflow: hidden;
+}
+
+.menu article.lmenu{
+    float: left;
+}
+
+.menu article.rmenu{
+    float: right;
+}
+
+.menu article ul{
+    overflow: hidden;
+    list-style: none;    
+}
+
+.menu article ul li{
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.menu article ul li .item_info{
+    display: inline-block;
+    float: left;
+}
+
+.menu article ul li h3{
+    color: #545454;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    margin: 0;
+    background: #fff;
+    padding: 0 40px 10px 0;
+    letter-spacing: .5px;
+    font-weight: normal;
+}
+
+.menu article ul li .item_desc{
+    color: #b7b7b7;
+    font-family: "aleo-italic", arial;
+    font-size: 12px;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
+
+.menu article ul li .price{
+    float: right;
+    color: #555;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    letter-spacing: .5px;
+    padding: 0 0 30px 40px;
+    background: #fff;
+    margin: 0;
+    font-weight: normal;
+}
+
+.menu article ul li .separator{
+    width: 100%;
+    height: 1px;
+    background: #e3e1e1;
+    position: absolute;
+    top: 10px;
+    border: 0;
+    z-index: -1;
+}
+
+.menu .load-more{
+    display: block;
+    text-align: center;
+}
+
+.menu .load-more a{
+    text-decoration: none;
+    display: inline-block;
+    color: #b7b7b7;
+    margin-top: 30px; 
+    padding: 10px 15px;
+    border: 1px solid #d7d5d5;
+
+    color: #b7b7b7;
+    font-family: "aleo-regular", arial;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.menu .load-more a hr{
+    width: 1px;
+    height: 12px;
+    border: 0;
+    background: #b7b7b7;
+    display: inline-block;
+    margin: 0 9px -1px 7px;
+}
+
+.menu .load-more a .bottom_arrow,
+.menu .load-more a .top_arrow{
+    display: inline-block;
+    width: 11px;
+    height: 7px;
+    background-repeat: repeat-y;
+    margin-bottom: 1px;
+}
+
+.menu .load-more a .bottom_arrow{    
+    background: url('../img/bottom_arrow.png');
+}
+
+.menu .load-more a .top_arrow{    
+    background: url('../img/top_arrow.png');
+}
+
+
+
+
+
+
+
+
+
+/*    featured dishes    */
+.info{
+    overflow: hidden;
+    margin-bottom: 80px;
+}
+
+.info .title{
+    float: left;
+    position: relative;
+}
+
+.info .title h3{
+    color: #3b3b3b;
+    font-family: "aleo-bold", arial;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.info .title .separator{
+    position: absolute;
+    width: 200px;
+    height: 1px;
+    background: #e5e3e3;
+    top: 10px;
+    right: -220px;    
+}
+.featured_dishes{
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.caroufredsel_wrapper{
+    width: 100%!important;
+}
+
+.featured_dishes .slider_nav{
+    float: right;
+}
+
+.featured_dishes .slider_nav a{
+    display: block;
+    width: 9px;
+    height: 9px;
+    float: left;
+    margin-left: 10px;
+    text-indent: 999px;
+    text-decoration: none;
+    background: url('../img/pagination.png') no-repeat;
+}
+
+.featured_dishes .slider_nav a.selected{
+    background: url('../img/pagination_active.png') no-repeat;
+}
+
+
+.featured_dishes .dishes{
+    overflow: hidden;
+}
+
+.featured_dishes .dishes article{
+    display: block;
+    width: 230px;
+    float: left;
+    margin-right: 60px;
+}
+
+.featured_dishes .dishes article:last-child{
+    margin-right: 0;
+}
+
+.featured_dishes .dishes article .dishe_img{
+    display: block;
+    width: 230px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.featured_dishes .dishes article .dish_info{
+    overflow: hidden;
+    margin: 30px 0 10px 0;
+}
+
+.featured_dishes .dishes article .dish_info h2{
+    float: left;
+    width: 85%;
+}
+
+.featured_dishes .dishes article .dish_info h3{
+    float: right;
+}
+
+.featured_dishes .dishes article .dish_info h3,
+.featured_dishes .dishes article .dish_info h2{
+    margin: 0;
+    color: #555;
+    font-family: "aleo-light", arial;
+    font-size: 16px;
+    font-weight: lighter;
+
+}
+
+.featured_dishes .dishes article .rating ul{
+    list-style: none;
+    overflow: hidden;
+}
+
+.featured_dishes .dishes article  ul.rating li{
+   display: block;
+   width: 12px;
+   height: 11px;
+   float: left;
+   margin-right: 5px;
+   background: url('../img/stars.png') no-repeat;
+   background-position: 0 0;
+}
+
+.featured_dishes .dishes article  ul.rating li.no-star{
+   background-position: -13px 0;
+}
+
+
+
+
+
+
+
+
+
+/*    gallery    */
+.gallery{
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+.gallery .media{
+    overflow: hidden;
+    width: 100%;
+    height: 430px
+}
+
+.gallery .media section{
+    display: block;
+    width: 366px;
+    float: left;
+} 
+
+.gallery .active{
+    zoom: 1;
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+.gallery .inactive{
+    zoom: 1;
+    filter: alpha(opacity=80);
+    opacity: .8;
+}
+
+.gallery .media section .hhalf{
+    display: block;
+    width: 100%;
+    height: 215px;
+} 
+
+.gallery .media section img{
+    width: 100%;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+/*    footer    */
+footer{
+
+    width: 100%;
+    margin-top: 100px;
+    padding: 100px 0;
+    background: #3b3b3b;
+    overflow: hidden;
+}
+
+footer section{
+    display: block;
+    width: 230px;
+    margin-right: 60px;
+    float: left;
+}
+
+footer section:last-child{
+    margin-right: 0;
+}
+
+footer .adress{
+    color: #fff;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+footer .adress .location{
+    color: #ebebeb;
+    font-family: "aleo-light", arial;
+    font-weight: lighter;
+}
+
+footer .adress .phone{
+    font-family: "aleo-bold", arial;
+    font-weight: bold;
+}
+
+footer .footer_nav ul{
+    list-style: none;
+}
+
+footer .footer_nav ul li{
+    display: block;
+    margin-bottom: 18px;
+}
+
+footer .footer_nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    font-family: "aleo-regular", arial;
+    font-size: 16px;
+    letter-spacing: 1px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #3b3b3b;
+}
+
+footer .footer_nav ul li a:hover{
+    border-bottom: 2px solid #FFF;
+}
+
+footer .copyrights .footer_logo{
+    margin-bottom: 30px;
+}
+
+footer .copyrights p{
+    color: #ebebeb;
+    font-family: "aleo-light", arial;
+    font-size: 14px;
+    font-weight: lighter;
+    line-height: 32px;
+    letter-spacing: 1px;
+}
+
+footer .copyrights p a{
+    font-family: "aleo-bold", arial;
+    font-weight: bold;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.error-message {
+    font-size: 90%;
+    color: red;
+    font-style: italic;
+}
+
+
+table td {
+    padding: 5px;
+}
+

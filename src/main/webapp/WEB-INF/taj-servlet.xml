@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:mvc="http://www.springframework.org/schema/mvc"
+     xsi:schemaLocation="
+      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">		
+      
+      
+    <context:component-scan base-package="com.taj"/>
+    <!-- <mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>   -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/jsp/" />
+      <property name="suffix" value=".jsp" />
+ 	</bean>
+ 	
+ 		
+ 	
+ 	<mvc:resources mapping="/resources/**" location="/resources/"/>
+
+	<mvc:annotation-driven/>
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="/resources/messages/validation"/>      
+        
+    </bean>
+     
+ 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/taj_restaurant"/>
+		
+		<property name="username" value="root" />
+		
+		<property name="password" value="admin"></property>
+	</bean>
+	<bean id="hibernate4AnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.taj.entity.Category</value>	
+				<value>com.taj.entity.OrderItems</value>			
+				<value>com.taj.entity.Product</value>
+				<value>com.taj.entity.User</value>
+				<value>com.taj.entity.Order</value>				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+				<prop key="hibernate.show_sql">true</prop>				
+			</props>
+		</property>
+	
+	</bean>
+	
+	<bean id="productDao" class="com.taj.dao.impl.ProductDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></property>
+	</bean>
+	
+	<bean id="orderDao" class="com.taj.dao.impl.OrderDaoImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"></property>
+	</bean>	
+	
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</bean>
+      
+</beans>
