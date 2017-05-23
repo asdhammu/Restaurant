@@ -26,20 +26,20 @@ alter table userorder modify order_date timestamp;
 // DDL
 
 
-insert into category values (1,"APPETIZERS"); - NO
+insert into category values (1,"APPETIZERS");
 insert into category values (2,"Soups and Salads"); 
-insert into category values (3,"Tandoori Breads"); - NO
+insert into category values (3,"Tandoori Breads");
 insert into category values (4,"Rice and Biryani");
 insert into category values (5,"Tandoori Specialities");
 insert into category values (6,"Chicken Entrees");
 insert into category values (7,"Lamb Entrees");
 insert into category values (8,"Sea Food");
 insert into category values (9,"Vegetable Delights");
-insert into category values (10,"Specials"); -
-insert into category values (11,"Beverages"); - NO
-insert into category values (12,"Beers"); - NO
-insert into category values (13,"Deserts"); - NO
-insert into category values (14,"Side Orders"); - NO
+insert into category values (10,"Specials");
+insert into category values (11,"Beverages");
+insert into category values (12,"Beers");
+insert into category values (13,"Deserts"); 
+insert into category values (14,"Side Orders");
 
 
 
