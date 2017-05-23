@@ -1,0 +1,73 @@
+create table category ( id int(10) primary key not null auto_increment, name varchar(50));
+
+create table product ( product_id int(10) primary key not null auto_increment, name varchar(50) , price double(10,2), category_id int(10), description varchar(1000));
+
+alter table product add constraint product_ctgy_id_fk foreign key(category_id) references category( id);
+
+create table userorder(order_id  int(10) primary key not null auto_increment, user_id int(10) , price double(10,2));
+
+create table user(user_id int(10) primary key not null auto_increment, fname varchar(10), lname varchar(10), email_id varchar(50), phone int(10));
+
+alter table userorder add constraint order_user_id_fk foreign key(user_id) references user(user_id);
+
+//alter table product add column description varchar(1000);
+
+create table orderItems ( item_id int(10) primary key not null auto_increment, name varchar(50), quantity int(2), order_id int(10));
+
+alter table orderItems add constraint order_id_fk foreign key(order_id) references userorder(order_id);
+
+ alter table userorder add column order_date date;
+ alter table user modify phone varchar(10);
+alter table userorder modify order_date timestamp;
+
+ alter table orderItems add column hotness varchar(10);
+ 
+ alter table user add column address varchar(100);
+// DDL
+
+
+insert into category values (1,"APPETIZERS"); - NO
+insert into category values (2,"Soups and Salads"); 
+insert into category values (3,"Tandoori Breads"); - NO
+insert into category values (4,"Rice and Biryani");
+insert into category values (5,"Tandoori Specialities");
+insert into category values (6,"Chicken Entrees");
+insert into category values (7,"Lamb Entrees");
+insert into category values (8,"Sea Food");
+insert into category values (9,"Vegetable Delights");
+insert into category values (10,"Specials"); -
+insert into category values (11,"Beverages"); - NO
+insert into category values (12,"Beers"); - NO
+insert into category values (13,"Deserts"); - NO
+insert into category values (14,"Side Orders"); - NO
+
+
+
+insert into product values (1, "VEGETABLE SAMOSA",2.95, 1,"Crisp patties filled with mildly spiced potatoes and peas");
+insert into product values (2, "VEGETABLE PAKORA",2.95, 1,"Mixed Vegetable Fritters dipped in batter and fried");
+insert into product values (3, "CHICKEN PAKORA",6.95, 1,"Boneless chicken dipped in spiced batter and fried");
+
+insert into product values (4, "CHEESE PAKORA",5.95, 1,"Delicately spiced fried cheese fritters");
+insert into product values (5, "FISH PAKORA",8.95, 1,"Fish filets dipped in Spiced batter and fried");
+
+insert into product values (6, "CHICKEN SOUP",4.95, 2,"Indian style, lightly spiced");
+insert into product values (7, "MULLIGATAWNY SOUP",3.95, 2,"Delicately Spiced Lentil Soup Garnished with Rice & Chicken");
+insert into product values (8, "LENTIL SOUP",2.95, 2,"Mildly spiced");
+insert into product values (9, "Vegeterian Salad",3.95, 2,"Lettuce, cheese, cilantro, cucumber, tomatoes");
+insert into product values (10, "KACHUMBER/CHICK PEA SALAD",2.95, 2,"Cucumbers, Onions, Tomatoes, Cilantro, Chickpeas & Lemon");
+
+insert into product values(117,"ASSORTED APPETIZERS ",8.95,1,"KABAB, SAMOSA, PAKORA, CHICKEN PAKORA, ONION BHAJI");
+insert into product values(118,"PANEER TIKKA (CHEEESE)",12.95,1,"Marinated in spices, cooked in clay over, sautéed in bell pepper & onion");
+insert into product values(119,"CHILI CHICKEN",13.95,1,"Boneless chicken sautéed with onion and Bell Pepper");
+insert into product values(120,"ONION BHAJI",3.95,1,"Chopped onions dipped in batter and fried");
+
+insert into product values(121,"GULAB JAMUN",3.95,13,"Indian Milk Cheese Balls, Fried & soaked in honey syrup");
+insert into product values(122,"KHEER",3.95,13,"Indian Rice Pudding");
+insert into product values(123,"PISTACHIO KULFI",4.95,13,"Indian Ice Cream With Pistachios");
+insert into product values(124,"MANGO KULFI",4.95,13,"Indian Ice Cream With Mango");
+
+insert into product values(125,"RAITA",2.5,14,"Cultured Yogurt with Cucumbers, Carrots & Spices");
+insert into product values(126,"Plain Yogurt",2.5,14,"");
+insert into product values(127,"MANGO CHUTNEY",2.5,14,"");
+insert into product values(128,"HOT PICKEL",1.95,14,"");
+insert into product values(129,"PAPADDAM",1.25,14,"");
