@@ -10,5 +10,5 @@ MySQL database
 2. Run database/taj_restaurant_sql.txt file under taj_restaurant schema
 
 3. mvn install 
-4. deploy jar in tomcat server.
+4. deploy war in tomcat server.
 5. Start the server and hit localhost:8080/Restaurant
