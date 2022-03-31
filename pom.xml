@@ -9,7 +9,7 @@
   <url>http://maven.apache.org</url>
   <properties>
   		<maven.test.failure.ignore>true</maven.test.failure.ignore>
-		<spring.framework.version>4.2.2.RELEASE</spring.framework.version>
+		<spring.framework.version>5.3.18</spring.framework.version>
 		<hibernate.version>4.1.9.Final</hibernate.version>
 		<sl4j.version>1.7.2</sl4j.version>
 		<junit.version>4.11</junit.version>
