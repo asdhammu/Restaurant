@@ -26,3 +26,8 @@ hs_err_pid*
 /.classpath
 /.project
 /.settings/
+
+.idea
+Restaurant.iml
+.env
+.m2

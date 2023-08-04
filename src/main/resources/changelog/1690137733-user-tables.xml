@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1690137733-user-tables" author="my-restaurant">
+        <createTable tableName="user_info">
+            <column name="user_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar2(100)"/>
+            <column name="last_name" type="varchar2(100)"/>
+            <column name="email_id" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="varchar2(100)"/>
+            <column name="phone" type="varchar2(20)"/>
+            <column name="password" type="varchar2(255)"/>
+            <column name="auth_provider" type="varchar2(20)"/>
+            <column name="img_url" type="varchar2(255)"/>
+            <column name="is_enabled" type="boolean" defaultValueBoolean="false"/>
+            <column name="is_locked" type="boolean" defaultValueBoolean="false"/>
+            <column name="is_non_expired" type="boolean" defaultValueBoolean="false"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="user_role">
+            <column name="role_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="users_roles">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="user_id"
+                                 constraintName="fk_users_roles_user_id"
+                                 referencedTableName="user_info"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="role_id"
+                                 constraintName="fk_users_roles_role_id"
+                                 referencedTableName="user_role"
+                                 referencedColumnNames="role_id"/>
+
+        <createTable tableName="user_address">
+            <column name="address_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email_id" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street_address_1" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street_address_2" type="varchar2(255)"/>
+            <column name="state_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postal_code" type="varchar2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_type" type="varchar2(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_default" type="boolean" defaultValueBoolean="false"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_address" baseColumnNames="user_id"
+                                 constraintName="fk_user_address_user_id"
+                                 referencedTableName="user_info"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="user_address" baseColumnNames="state_id"
+                                 constraintName="fk_user_address_state_id"
+                                 referencedTableName="state"
+                                 referencedColumnNames="state_id"/>
+        <addForeignKeyConstraint baseTableName="user_address" baseColumnNames="country_id"
+                                 constraintName="fk_user_address_country_id"
+                                 referencedTableName="country"
+                                 referencedColumnNames="country_id"/>
+
+        <createTable tableName="user_payment_method">
+            <column name="payment_method_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="credit_card_number" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cvv" type="varchar2(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_month" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_year" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_default" type="boolean" defaultValueBoolean="false"/>
+            <column name="payment_type" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_payment_method" baseColumnNames="user_id"
+                                 constraintName="fk_user_payment_method_user_id"
+                                 referencedTableName="user_info"
+                                 referencedColumnNames="user_id"/>
+
+        <createTable tableName="user_preference">
+            <column name="user_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="theme" type="varchar2(100)"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="user_preference" baseColumnNames="user_id"
+                                 constraintName="fk_user_preference_user_id"
+                                 referencedTableName="user_info"
+                                 referencedColumnNames="user_id"/>
+    </changeSet>
+
+</databaseChangeLog>

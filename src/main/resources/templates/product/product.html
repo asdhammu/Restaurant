@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head th:insert="~{fragments/head :: head}"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section class="pt-md-5 pt-3 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="card">
+                            <img th:src="${product.imgUrl()}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="row mb-1">
+                            <div class="col">
+                                <a class="text-muted"
+                                   th:href="@{/category/{categoryId}(categoryId=${product.category().id()})}"
+                                   th:text="${product.category().name()}"></a>
+                            </div>
+                            <div class="col-auto">
+                                <a class="text-muted" href="#reviews">Reviews</a>
+                            </div>
+                        </div>
+                        <h3 class="mb-2" th:text="${product.name()}"></h3>
+                        <div class="mb-5">
+                            <span class="text-gray-350" th:text="${product.price()}"></span>
+                        </div>
+                        <form th:action="@{/cart/add}" class="#" action="#" th:method="POST"
+                              th:object="${productCartForm}">
+                            <input type="hidden" name="productId" th:field="*{productId}"/>
+                            <div class="container">
+                                <div class="row gx-5 mb-5">
+                                    <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-3 mb-2 mb-md-0">
+                                        <input type="number" name="quantity" value="1" min="1" class="form-control form-control-sm h-100 text-center"
+                                               th:field="*{quantity}"/>
+                                    </div>
+                                    <div class="col-12 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                        <button type="submit" class="btn btn-dark mb-2 w-100 h-md-100">
+                                            <span>Add to Cart</span>
+                                            <i class="fa fa-shopping-cart ps-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-0">
+                                <span class="me-4">Share: </span>
+                                <a class="btn btn-xxs btn-circle btn-light fs-xxxs tex-gray-350" href="#">
+                                    <i class="fa-brands fa-twitter"></i>
+                                </a>
+                                <a class="btn btn-xxs btn-circle btn-light fs-xxxs tex-gray-350" href="#">
+                                    <i class="fa-brands fa-facebook"></i>
+                                </a>
+                            </p>
+                        </form>
+                        <div class="row mt-5">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <h4>Description</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-lg-10 col-xl-8">
+                                        <p class="text-gray" th:text="${product.description()}"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="reviews">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h4 class="mb-5 text-center">Customer Reviews</h4>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-auto"></div>
+                        <div class="col-12 col-md text-md-center"></div>
+                        <div class="col-12 col-md-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+</body>
+</html>

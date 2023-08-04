@@ -1,0 +1,21 @@
+.mr-autocomplete .ui-menu-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    background: var(--bs-white);
+}
+
+.mr-autocomplete .ui-menu-item:hover {
+    background: var(--bs-light) !important;
+}
+
+.mr-autocomplete .ui-state-active {
+    background: var(--bs-light) !important;
+    border: none !important;
+    color: var(--bs-black) !important;
+    font-weight: normal !important;
+    margin: 0;
+}
+
+.mr-autocomplete .ui-helper-hidden-accessible {
+    display: none;
+}

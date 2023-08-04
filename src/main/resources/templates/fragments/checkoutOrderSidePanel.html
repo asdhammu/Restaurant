@@ -1,0 +1,52 @@
+<div class="col-12 col-md-5 col-lg-4 offset-lg-1" th:fragment="checkout_cart_side_panel">
+    <h6 class="mb-5">Order Items</h6>
+    <ul class="list-group list-group-lg list-group-flush-y list-group-flush-x mb-5">
+        <li class="list-group-item" th:each="item: ${items}">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <a th:href="@{/product/{productId}(productId=${item.getProduct().productId()})}">
+                        <img th:src="${item.getProduct().imgUrl()}" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col">
+                    <p class="mb-4 fs-sm fw-bold">
+                        <a class="text-body text-uppercase"
+                           th:href="@{/product/{productId}(productId=${item.getProduct().productId()})}"
+                           th:text="${item.getProduct().name()}"></a><br/>
+                        <span th:text="${item.getPrice()}"
+                              class="text-muted"></span>
+                    </p>
+                    <div class="fs-sm text-muted">
+                        <span>Quantity: </span> <span th:text="${item.getQuantity()}"></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+    <div class="card mb-5 bg-light">
+        <div class="card-body">
+            <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                <li class="list-group-item d-flex">
+                    <span>Subtotal</span>
+                    <span class="ms-auto fs-sm" th:text="'$' + ${price}"></span>
+                </li>
+                <li class="list-group-item d-flex">
+                    <span>Tax</span>
+                    <span class="ms-auto fs-sm" th:text="'$' + ${tax}"></span>
+                </li>
+                <!--<li class="list-group-item d-flex">
+                    <span>Shipping</span>
+                    <span class="ms-auto fs-sm" th:text="'$' + ${shipping}"></span>
+                </li>-->
+                <li class="list-group-item d-flex fs-lg fw-bold">
+                    <span>Total</span>
+                    <span class="ms-auto fs-sm" th:text="'$' + ${tax + price}"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button class="btn w-100 btn-dark" th:if="${selectPaymentFlag}">Use this payment</button>
+    <button class="btn w-100 btn-dark" th:if="${selectAddressFlag}">Use this address</button>
+    <button class="btn w-100 btn-dark" th:if="${!selectAddressFlag && !selectPaymentFlag}">Place Order</button>
+</div>

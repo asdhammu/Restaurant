@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+      lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="fragments/header :: header_body"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container mt-md-5 mt-2">
+                <div th:replace="fragments/userheader :: user_header_body"></div>
+                <div class="row small-md">
+                    <div th:replace="~{fragments/profileNavigator :: profile_navigation}"></div>
+                    <div class="col-12 col-md-9 col-lg-8 off-set-lg-1">
+                        <div class="row mb-3 text-center mx-3">
+                            <h3>Order# [[${order.orderId()}]]</h3>
+                        </div>
+                        <div class="row text-center bg-light mx-0 mx-md-3 p-md-3 py-2">
+                            <div class="col-6">Item</div>
+                            <div class="col-2">Price</div>
+                            <div class="col-2">Quantity</div>
+                            <div class="col-2">Total</div>
+                        </div>
+                        <div class="row text-center py-md-4 mx-0 mx-md-3 py-2 my-2" th:each="item: ${order.items()}">
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="col-6 col-md-4">
+                                        <a th:href="@{/product/{productId}(productId=${item.product().productId()})}">
+                                            <img th:src="${item.product().imgUrl()}" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="col-6 col-md-8">
+                                        <div class="d-flex mb-2 fw-bold">
+                                            <a class="text-body small" th:text="${item.product().name()}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2" th:text="${item.price()}"></div>
+                            <div class="col-2" th:text="${item.quantity()}"></div>
+                            <div class="col-2" th:text="${item.subtotal()}"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 p-4">
+                                <h6 class="text-uppercase my-3">Order Summary</h6>
+                                <div class="pt-3">
+                                    <ul class="list-group">
+                                        <li class="list-group-item">
+                                            <div class="d-flex">
+                                                <span>Order Subtotal</span>
+                                                <span th:text="${order.subtotal()}" class="margin-left-auto"></span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex">
+                                                <span>Tax</span>
+                                                <span th:text="${order.tax()}" class="margin-left-auto"></span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <div class="d-flex">
+                                                <span>Total</span>
+                                                <span th:text="${order.totalPrice()}" class="margin-left-auto"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6 p-4">
+                                <h6 class="text-uppercase my-3">Billing Address</h6>
+                                <p class="text-muted mb-0">
+                                    <span th:text="${order.billingAddress().firstName()}"></span>
+                                    <span th:text="${order.billingAddress().lastName()}"></span><br/>
+                                    <span th:text="${order.billingAddress().street1()}"></span><br/>
+                                    <span th:text="${order.billingAddress().street2()}"></span><br/>
+                                    <span th:text="${order.billingAddress().state()}"></span><br/>
+                                    <span th:text="${order.billingAddress().postalCode()}"></span><br/>
+                                    <span th:text="${order.billingAddress().country()}"></span><br/>
+                                    <span th:text="${order.billingAddress().phoneNumber()}"></span><br/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 p-4">
+                                <h6 class="text-uppercase my-3">Payment</h6>
+                                <p class="text-muted mb-0">
+                                    <span th:text="${order.payment().creditCard()}"></span><br/>
+                                    <span th:text="${order.payment().expiryMonth()}"></span>/
+                                    <span th:text="${order.payment().expiryYear()}"></span><br/>
+                                    <span th:text="${order.payment().fullName()}"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer_body"></div>
+</body>
+</html>

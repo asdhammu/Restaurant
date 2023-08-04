@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+
+  restaurant-db:
+    image: postgres:13.11-bullseye
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_ROOT_PASSWORD
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  restaurant-app:
+    depends_on:
+      - restaurant-db
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - "9001:9000"
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.profiles.active" : "prod",
+        "spring.datasource.url"  : "jdbc:postgresql://restaurant-db:5432/$POSTGRES_DATABASE",
+        "spring.datasource.username" : "$POSTGRES_USER",
+        "spring.datasource.password" : "$POSTGRES_ROOT_PASSWORD",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.PostgreSQLDialect"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true

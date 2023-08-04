@@ -1,0 +1,48 @@
+<div class="modal animate slideIn" id="add-payment-modal" tabindex="-1" aria-labelledby="add-payment-label"
+     aria-hidden="true" th:fragment="add_payment_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="add-payment-label">Add Payment</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label for="creditCard">Credit Card</label>
+                        <input type="text" class="form-control"
+                               id="creditCard"
+                               placeholder="Credit Card"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label for="expirationMonth">Expiration Month</label>
+                        <input type="text" class="form-control"
+                               placeholder="Expiration Month"
+                               id="expirationMonth"/>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <label for="expirationYear">Expiration Year</label>
+                        <input type="text" class="form-control"
+                               placeholder="Expiration Year"
+                               id="expirationYear"/>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <label for="cvv">Cvv</label>
+                        <input type="text" class="form-control" id="cvv"
+                               placeholder="Cvv"/>
+                    </div>
+                    <div class="col-12">
+                        <label for="fullName">Name</label>
+                        <input id="fullName" type="text" class="form-control"
+                               placeholder="Name as it appears on card"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="addPaymentModal" type="button" class="btn btn-dark">Use this payment</button>
+            </div>
+        </div>
+    </div>
+</div>

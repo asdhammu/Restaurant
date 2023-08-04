@@ -1,0 +1,52 @@
+<div th:fragment="payment_form" th:remove="tag">
+    <div class="col-12">
+        <div class="mb-3">
+            <label for="creditCardNumber">Credit Card</label>
+            <input type="text" th:field="*{creditCard}" class="form-control"
+                   id="creditCardNumber" th:classappend="${#fields.hasErrors('creditCard') ? 'is-invalid': ''}"
+                   placeholder="Credit Card"/>
+            <span th:if="${#fields.hasErrors('creditCard')}" th:errors="*{creditCard}"
+                  class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="mb-3">
+            <label for="expirationMonth">Expiration Month</label>
+            <input type="text" th:field="*{expirationMonth}" class="form-control"
+                   placeholder="Expiration Month" th:classappend="${#fields.hasErrors('expirationMonth') ? 'is-invalid': ''}"
+                   id="expirationMonth"/>
+            <span th:if="${#fields.hasErrors('expirationMonth')}" th:errors="*{expirationMonth}"
+                  class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12 col-md-4">
+        <div class="mb-3">
+            <label for="expirationYear">Expiration Year</label>
+            <input type="text" th:field="*{expirationYear}" class="form-control"
+                   placeholder="Expiration Year" th:classappend="${#fields.hasErrors('expirationYear') ? 'is-invalid': ''}"
+                   id="expirationYear"/>
+            <span th:if="${#fields.hasErrors('expirationYear')}" th:errors="*{expirationYear}"
+                  class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+        <div class="mb-3">
+            <label for="cvv">Cvv</label>
+            <input type="text" th:field="*{cvv}" class="form-control" id="cvv"
+                   placeholder="Cvv" th:classappend="${#fields.hasErrors('cvv') ? 'is-invalid': ''}"/>
+            <span th:if="${#fields.hasErrors('cvv')}" th:errors="*{cvv}"
+                  class="invalid-feedback"></span>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="mb-3">
+            <label for="fullName">Name</label>
+            <input id="fullName" type="text" th:field="*{fullName}" class="form-control"
+                   placeholder="Name as it appears on card" th:classappend="${#fields.hasErrors('fullName') ? 'is-invalid': ''}"/>
+            <span th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"
+                  class="invalid-feedback"></span>
+        </div>
+    </div>
+</div>

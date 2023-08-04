@@ -1,0 +1,80 @@
+<div class="modal animate slideIn" id="add-address-modal" tabindex="-1" aria-labelledby="add-address-label"
+     aria-hidden="true"
+     th:fragment="add_address_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="add-address-label">Add address</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="firstName">First Name *</label>
+                        <input class="form-control form-control-sm" id="firstName" type="text"
+                               placeholder="First name">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="lastName">Last Name *</label>
+                        <input class="form-control form-control-sm" id="lastName" type="text"
+                               placeholder="Last name">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="emailId">Email Id*</label>
+                        <input class="form-control form-control-sm" id="emailId" type="text"
+                               placeholder="Email">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="country">Country *</label>
+                        <select id="country" class="form-select">
+                            <option value="">--SELECT--</option>
+                            <option th:each="country: ${countries}" th:value="${country.name()}"
+                                    th:text="${country.name()}"></option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="streetAddress1">Address 1 *</label>
+                        <input class="form-control form-control-sm" id="streetAddress1" type="text"
+                               placeholder="Address 1">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="streetAddress2">Address 2</label>
+                        <input class="form-control form-control-sm" id="streetAddress2" type="text"
+                               placeholder="Address 2">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="city">City *</label>
+                        <input class="form-control form-control-sm" id="city" type="text"
+                               placeholder="City">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="postalCode">Postal *</label>
+                        <input class="form-control form-control-sm" id="postalCode" type="text"
+                               placeholder="Postal">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="state">State *</label>
+                        <select id="state" class="form-select">
+                            <option value="">--SELECT--</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label" for="phoneNumber">Phone Number *</label>
+                        <input class="form-control form-control-sm" id="phoneNumber" type="text"
+                               placeholder="Phone Number">
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-4 form-check">
+                            <input class="form-check-input" id="myDefault" type="checkbox">
+                            <label class="form-check-label" for="myDefault">Make it my default</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button id="addAddressModal" type="button" class="btn btn-dark">Use this address</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="createSequences" author="my-restaurant-test">
+        <createSequence sequenceName="user_info_user_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="address_address_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="carousel_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="cart_cart_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="category_category_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="country_country_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="feature_flags_feature_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="order_items_item_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="payment_method_payment_method_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="user_role_role_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="state_state_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="user_address_address_id_seq" startValue="10" incrementBy="50"/>
+        <createSequence sequenceName="user_payment_method_payment_method_id_seq" startValue="10" incrementBy="50"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,124 @@
+<div th:fragment="checkout_billing_form" th:remove="tag">
+    <div class="col-12 col-md-6">
+        <div class="mb-4">
+            <label class="form-label" for="firstName">First Name *</label>
+            <input class="form-control form-control-sm" id="firstName" type="text"
+                   placeholder="First name"
+                   th:field="*{firstName}"
+                   th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="mb-4">
+            <label class="form-label" for="lastName">Last Name *</label>
+            <input class="form-control form-control-sm" id="lastName" type="text"
+                   placeholder="Last name"
+                   th:field="*{lastName}"
+                   th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="email">Email Id*</label>
+            <input class="form-control form-control-sm" id="email" type="text"
+                   placeholder="Email"
+                   th:field="*{emailId}"
+                   th:classappend="${#fields.hasErrors('emailId') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('emailId')}"
+                  th:errors="*{emailId}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="country-drop-down">Country *</label>
+            <select th:field="*{country}" id="country-drop-down" class="form-select" th:classappend="${#fields.hasErrors('country') ? 'is-invalid': ''}">
+                <option value="">--SELECT--</option>
+                <option th:each="country: ${countries}" th:value="${country.name()}"
+                        th:text="${country.name()}"
+                        th:selected="${country.name()}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('country')}"
+                  th:errors="*{country}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="Address 1">Address 1 *</label>
+            <input class="form-control form-control-sm" id="address1" type="text"
+                   placeholder="Address 1"
+                   th:field="*{streetAddress1}"
+                   th:classappend="${#fields.hasErrors('streetAddress1') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('streetAddress1')}"
+                  th:errors="*{streetAddress1}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="Address 2">Address 2</label>
+            <input class="form-control form-control-sm" id="Address 2" type="text"
+                   placeholder="Address 2"
+                   th:field="*{streetAddress2}"
+                   th:classappend="${#fields.hasErrors('streetAddress2') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('streetAddress2')}"
+                  th:errors="*{streetAddress2}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="mb-4">
+            <label class="form-label" for="city">City *</label>
+            <input class="form-control form-control-sm" id="city" type="text"
+                   placeholder="City"
+                   th:field="*{city}"
+                   th:classappend="${#fields.hasErrors('city') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('city')}"
+                  th:errors="*{city}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="mb-4">
+            <label class="form-label" for="postal">Postal *</label>
+            <input class="form-control form-control-sm" id="postal" type="text"
+                   placeholder="Postal"
+                   th:field="*{postalCode}"
+                   th:classappend="${#fields.hasErrors('postalCode') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('postalCode')}"
+                  th:errors="*{postalCode}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="state-drop-down">State *</label>
+            <select th:field="*{state}" id="state-drop-down" class="form-select" th:classappend="${#fields.hasErrors('state') ? 'is-invalid': ''}">
+                <option value="">--SELECT--</option>
+                <option th:each="state: ${states}" th:value="${state.name()}"
+                        th:text="${state.name()}"
+                        th:selected="${state.name()}"></option>
+            </select>
+            <span th:if="${#fields.hasErrors('state')}"
+                  th:errors="*{state}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4">
+            <label class="form-label" for="phoneNumber">Phone Number *</label>
+            <input class="form-control form-control-sm" id="phoneNumber" type="text"
+                   placeholder="Phone Number"
+                   th:field="*{phoneNumber}"
+                   th:classappend="${#fields.hasErrors('phoneNumber') ? 'is-invalid': ''}">
+            <span th:if="${#fields.hasErrors('phoneNumber')}"
+                  th:errors="*{phoneNumber}" class="invalid-feedback"></span>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="mb-4 form-check">
+            <input class="form-check-input" id="myDefault" type="checkbox"
+                   th:field="*{myDefault}"
+                   th:classappend="${#fields.hasErrors('myDefault') ? 'is-invalid': ''}">
+            <label class="form-check-label" for="myDefault">Make it my default</label>
+        </div>
+    </div>
+</div>

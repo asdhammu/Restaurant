@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1690138181-full-text-search" author="my-restaurant" dbms="postgresql">
+        <sql>
+            CREATE INDEX idx_products_name ON product USING GIN (to_tsvector('english', name));
+            CREATE INDEX idx_products_description ON product USING GIN (to_tsvector('english', description));
+        </sql>
+    </changeSet>
+</databaseChangeLog>

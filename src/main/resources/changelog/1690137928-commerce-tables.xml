@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="1690137928-commerce-tables" author="my-restaurant">
+        <createTable tableName="address">
+            <column name="address_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="email_id" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street_address_1" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street_address_2" type="varchar2(255)"/>
+            <column name="state_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postal_code" type="varchar2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone_number" type="varchar2(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_type" type="varchar2(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="address" baseColumnNames="state_id" constraintName="fk_address_state_id"
+                                 referencedTableName="state"
+                                 referencedColumnNames="state_id"/>
+        <addForeignKeyConstraint baseTableName="address" baseColumnNames="country_id"
+                                 constraintName="fk_address_country_id"
+                                 referencedTableName="country"
+                                 referencedColumnNames="country_id"/>
+
+        <createTable tableName="payment_method">
+            <column name="payment_method_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="credit_card_number" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cvv" type="varchar2(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_month" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiry_year" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="full_name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_type" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="category">
+            <column name="category_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar2(255)"/>
+            <column name="img_url" type="varchar2(255)"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="product">
+            <column name="product_id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="float"/>
+            <column name="img_url" type="varchar2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar2(1000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_favorite" type="boolean" defaultValueBoolean="false"/>
+            <column name="has_spice_level" type="boolean" defaultValueBoolean="false"/>
+            <column name="category_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="product" baseColumnNames="category_id"
+                                 constraintName="fk_product_category_id"
+                                 referencedTableName="category"
+                                 referencedColumnNames="category_id"/>
+
+        <createTable tableName="cart">
+            <column name="cart_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="cart_item">
+            <column name="cart_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="product_id" type="uuid">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="price" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="cart_item" baseColumnNames="cart_id"
+                                 constraintName="fk_cart_item_cart_id"
+                                 referencedTableName="cart"
+                                 referencedColumnNames="cart_id"/>
+        <addForeignKeyConstraint baseTableName="cart_item" baseColumnNames="product_id"
+                                 constraintName="fk_cart_item_product_id"
+                                 referencedTableName="product"
+                                 referencedColumnNames="product_id"/>
+
+        <createTable tableName="user_order">
+            <column name="order_id" type="uuid" defaultValueComputed="uuid_generate_v4()">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="tax" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_price" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_status" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="billing_address_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payment_method_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="user_order" baseColumnNames="user_id"
+                                 constraintName="fk_user_order_user_id"
+                                 referencedTableName="user_info"
+                                 referencedColumnNames="user_id"/>
+        <addForeignKeyConstraint baseTableName="user_order" baseColumnNames="billing_address_id"
+                                 constraintName="fK_user_order_billing_address_id"
+                                 referencedTableName="address"
+                                 referencedColumnNames="address_id"/>
+        <addForeignKeyConstraint baseTableName="user_order" baseColumnNames="payment_method_id"
+                                 constraintName="fk_user_order_payment_method_id"
+                                 referencedTableName="payment_method"
+                                 referencedColumnNames="payment_method_id"/>
+
+        <createTable tableName="order_items">
+            <column name="item_id" type="bigint" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="quantity" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="float">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="order_items" baseColumnNames="order_id"
+                                 constraintName="fk_order_items_order_id"
+                                 referencedTableName="user_order"
+                                 referencedColumnNames="order_id"/>
+        <addForeignKeyConstraint baseTableName="order_items" baseColumnNames="product_id"
+                                 constraintName="fk_order_items_product_id"
+                                 referencedTableName="product"
+                                 referencedColumnNames="product_id"/>
+    </changeSet>
+</databaseChangeLog>

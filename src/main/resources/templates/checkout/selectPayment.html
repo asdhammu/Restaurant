@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{fragments/head :: head}"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h3 class="mb-5">Checkout</h3>
+                    </div>
+                    <form th:action="@{/selectPayment/checkout}" th:method="POST"
+                          th:object="${selectPaymentCheckout}">
+                        <div class="row" sec:authorize="isAuthenticated()">
+                            <div class="col-12 col-md-7">
+                                <div class="mb-3 d-flex">
+                                    <h6>Select Payment</h6>
+                                </div>
+                                <div class="row mb-5">
+                                    <div class="col-12 col-md-7">
+                                        <div class="row">
+                                            <div class="col-12 d-flex mb-4" th:each="payment : ${paymentList}">
+                                                <input type="radio" th:field="*{paymentId}"
+                                                       th:value="${payment.id()}" th:id="${payment.id()}" class="me-3">
+                                                <label th:for="${payment.id()}" th:text="${payment.toString()}"
+                                                       class="form-check-label"></label>
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <a class="" data-bs-toggle="modal" data-bs-target="#add-payment-modal">Add
+                                                    new payment</a>
+                                            </div>
+                                            <div class="col-12 mb-4">
+                                                <button class="btn btn-dark" type="submit">Use this payment</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:replace="~{fragments/checkoutOrderSidePanel :: checkout_cart_side_panel}"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+<div th:replace="~{modal/addPayment :: add_payment_modal}"></div>
+</body>
+</html>

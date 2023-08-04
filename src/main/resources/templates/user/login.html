@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" lang="en">
+<head th:insert="~{fragments/head :: head}">
+    <title>Login</title>
+</head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section class="pt-5 pb-5">
+            <div class="container">
+                <div class="alert alert-info alert-dismissible fade show" th:if="${message != null}" role="alert">
+                    <span th:text="${message}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-md-6 col-lg-4 order-lg-1 order-2">
+                        <h1>My Restaurant</h1>
+                    </div>
+                    <div class="col-12 col-md-6 offset-lg-1 col-lg-4 order-lg-2 order-1">
+                        <div class="mb-lg-9 mb-2">
+                            <h1 class="mb-1 h2 fw-bold">Sign in</h1>
+                        </div>
+                        <div th:if="${param.error}">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <strong>Invalid Email or Password</strong>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                            </div>
+                        </div>
+                        <div th:if="${param.logout}">
+                            <div class="alert alert-success"> You have been logged out.</div>
+                        </div>
+                        <form th:action="@{/login}" th:method="post" action="#">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="username" class="invisible">Email address</label>
+                                    <input type="text" name="username" id="username" class="form-control"
+                                           placeholder="Enter email"/>
+                                </div>
+                                <div class="col-12">
+                                    <label for="password" class="invisible"> Password: </label>
+                                    <input type="password" name="password" id="password" class="form-control"
+                                           placeholder="password"/>
+                                </div>
+                                <div class="d-flex just-content-between">
+                                    <span>Forgot Password ?</span>
+                                    <a th:href="@{/user/reset-password}">Reset</a>
+                                </div>
+                                <div class="col-12 d-grid">
+                                    <button type="submit" class="btn btn-dark">Sign In</button>
+                                </div>
+                                <div>
+                                    <span>Don't have an account?</span>
+                                    <a th:href="@{/registration}">Register/Signup here</a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+</body>
+</html>

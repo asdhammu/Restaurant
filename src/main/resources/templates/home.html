@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head th:insert="~{fragments/head :: head}"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div id="myRestaurantCarousel" class="carousel slide w-100" data-bs-ride="true">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                                    aria-label="Slide 2"></button>
+                        </div>
+                        <div class="carousel-inner">
+                            <div class="carousel-item" th:each="car : ${carousel}"
+                                 th:classappend="${car.active() ? 'active': ''}">
+                                <img class="d-block img-fluid mr-carouse-img" th:src="${car.imgUrl()}"
+                                     th:alt="${car.title()}" th:height="${car.height()}" th:width="${car.width()}">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 th:text="${car.title()}"></h5>
+                                    <p th:text="${car.description()}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mb-5">
+                        <h3 class="mb-0">Featured Products</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-4" th:each="prod : ${favorites}">
+                        <div class="card mb-2">
+                            <a th:href="@{/product/{productId}(productId=${prod.productId()})}">
+                                <img th:src="${prod.imgUrl()}" class="img-fluid">
+                            </a>
+                            <div class="card-body p-2 pt-0">
+                                <p class="text-muted small mb-1 mt-1" th:text="${prod.category().name()}"
+                                   th:onclick="|window.location.href=@{/category/{catId}(catId=${prod.category().id()})}|">
+                                </p>
+                                <a class="text-dark text-uppercase"
+                                   th:href="@{/product/{productId}(productId=${prod.productId()})}"
+                                   th:text="${prod.name()}"></a>
+                                <br/>
+                                <span class="text-muted"
+                                      th:text="${prod.price()}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+</body>
+</html>
