@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="fragments/header :: header_body"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container mt-md-5 mt-2">
+                <div th:replace="fragments/userheader :: user_header_body"></div>
+                <div class="row small-md">
+                    <div th:replace="~{fragments/profileNavigator :: profile_navigation}"></div>
+                    <div class="col-12 col-md-9 col-lg-8 off-set-lg-1">
+                        <div class="row">
+                            <div class="col-12" th:if="${message != null}">
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    <span th:text="${message}"></span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                            aria-label="Close"></button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6" th:each="payment: ${payments}">
+                                <div class="card card-lg bg-light mb-5">
+                                    <div class="card-body">
+                                        <h6 class="mb-3">
+                                            <span>Credit / Debit Card</span>
+                                            <span th:if="${payment.myDefault()}"><strong>(DEFAULT)</strong></span>
+                                        </h6>
+                                        <p class="text-muted mb-0">
+                                            <span th:text="${payment.creditCard()}"></span><br/>
+                                            <span th:text="${payment.expiryMonth()}"></span>/
+                                            <span th:text="${payment.expiryYear()}"></span><br/>
+                                            <span th:text="${payment.fullName()}"></span>
+                                        </p>
+                                        <div class="card-action card-action-end d-flex">
+                                            <a class="btn btn-xs btn-circle btn-white-primary"
+                                               th:href="@{/user/payments/edit/{paymentId}(paymentId=${payment.id()})}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <form th:action="@{/user/payment/delete}"
+                                                  th:method="POST">
+                                                <input name="paymentId" id="paymentId" th:value="${payment.id()}"
+                                                       type="hidden">
+                                                <button class="btn btn-xs btn-circle btn-white-primary" type="submit">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <a class="btn w-100 btn-lg btn-outline-border mb-5" th:href="@{/user/payments/add}">Add
+                                    Payment <i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer_body"></div>
+</body>
+</html>

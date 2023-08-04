@@ -1,0 +1,18 @@
+logging:
+  level:
+    my.restaurant: DEBUG
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/myopenrestaurant
+    username: postgres
+    password: admin
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  liquibase:
+    change-log: classpath:changelog/main.xml
+    enabled: true

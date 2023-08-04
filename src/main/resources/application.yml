@@ -1,0 +1,14 @@
+server:
+  port: 9000
+  error:
+    path: /error
+
+logging:
+  level:
+    root: info
+
+spring:
+  profiles:
+    active: dev
+  jpa:
+    open-in-view: false

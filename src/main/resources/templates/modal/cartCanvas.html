@@ -1,0 +1,29 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffCanvas" aria-labelledby="cartLabel"
+     th:fragment="cartCanvas_body">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartLabel">Cart <span id="cart-count-canvas"></span></h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="container">
+            <div class="row" id="cart-canvas-message">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <ul id="offcanvas-cart-items" class="list-group list-group-lg list-group-flush-x">
+                    </ul>
+                </div>
+            </div>
+            <div class="row bg-light mt-2 p-2">
+                <div class="col d-flex">
+                    <span class="m-fs">Subtotal</span>
+                    <span id="cart-canvas-subtotal" class="margin-left-auto m-fs"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="offcanvas-footer">
+        <a class="btn btn-dark w-100 mb-2" th:href="@{/checkout}">Checkout</a>
+        <a class="btn btn-dark w-100" th:href="@{/cart}">View Cart</a>
+    </div>
+</div>

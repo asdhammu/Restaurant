@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head th:insert="~{fragments/head :: head}"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section class="pt-md-5 pt-3 pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class="mb-md-5 mb-3 text-center">Shopping Cart</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div class="alert alert-warning alert-dismissible fade show" th:if="${cartItemRemovedMsg != null}" role="alert">
+                            <span th:text="${cartItemRemovedMsg}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <div class="alert alert-info alert-dismissible fade show" th:if="${cartItemUpdatedMsg != null}" role="alert">
+                            <span th:text="${cartItemUpdatedMsg}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <div th:if="${items.isEmpty()}" class="d-flex justify-content-center">
+                            <h4>Your cart is empty</h4>
+                        </div>
+                        <ul class="list-group list-group-lg list-group-flush-x mb-5">
+                            <li th:each="t: ${items}" class="list-group-item py-4">
+                                <div class="row align-items-center">
+                                    <div class="col-4 col-md-3">
+                                        <a th:href="@{/product/{productId}(productId=${t.getProduct().productId()})}">
+                                            <img th:src="${t.getProduct().imgUrl()}" class="img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="col-8 col-md-9">
+                                        <div class="d-flex mb-5 fw-bold">
+                                            <a class="text-body" th:href="@{/product/{productId}(productId=${t.getProduct().productId()})}" th:text="${t.getProduct().name()}"></a>
+                                            <span class="ms-auto" th:text="${t.getPrice()}"></span>
+                                        </div>
+                                        <div class="d-flex align-items-center">
+                                            <div class="d-flex">
+                                                <form th:action="@{/cart/update}" method="post" th:object="${productCartForm}">
+                                                    <input type="hidden" name="productId" th:value="${t.getProduct().productId()}"/>
+                                                    <input type="hidden" name="quantity" th:value="${t.quantity - 1}"/>
+                                                    <button class="btn ps-0" type="submit"><i class="fa fa-minus"></i></button>
+                                                </form>
+                                                <input type="number" min="1" max="99" th:value="${t.quantity}" class="form-control text-center input-number">
+                                                <form th:action="@{/cart/update}" method="post" th:object="${productCartForm}">
+                                                    <input type="hidden" name="productId" th:value="${t.getProduct().productId()}"/>
+                                                    <input type="hidden" name="quantity" th:value="${t.quantity + 1}"/>
+                                                    <button class="btn" type="submit"><i class="fa fa-plus"></i></button>
+                                                </form>
+                                            </div>
+                                            <form th:action="@{'/cart/remove/' + ${t.product.productId()}}" class="ms-auto" th:method="POST">
+                                                <button class="btn btn-link remove-btn text-gray px-0 small-md" type="submit">
+                                                    <i class="fa fa-remove"></i>
+                                                    <span class="ps-1">Remove</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="row align-items-end justify-content-between mb-10 mb-md-0" th:if="${!items.isEmpty()}">
+                            <div class="col-12 col-md-7">
+                                <form class="mb-5 mb-md-0">
+                                    <label class="form-label fs-sm fw-bold" for="couponCode">Coupon Code</label>
+                                    <div class="row row gx-5">
+                                        <div class="col">
+                                            <input class="form-control" id="couponCode" type="text"
+                                                   placeholder="Enter coupon">
+                                        </div>
+                                        <div class="col-auto">
+                                            <a class="btn w-100 btn-dark" type="submit">Apply</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md5 col-lg-4 offset-lg-1">
+                        <div class="card mb-5 bg-light">
+                            <div class="card-body">
+                                <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                                    <li class="list-group-item d-flex">
+                                        <span>Subtotal</span>
+                                        <span class="ms-auto fs-sm" th:text="|${currency}${price}|"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex">
+                                        <span>Tax</span>
+                                        <span class="ms-auto fs-sm" th:text="|${currency}${tax}|"></span>
+                                    </li>
+                                    <li class="list-group-item d-flex fs-lg fw-bold">
+                                        <span>Total</span>
+                                        <span class="ms-auto fs-sm" th:text="|${currency}${tax + price}|"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <a class="btn w-100 btn-dark mb-2" th:href="@{/checkout}">Proceed to Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+</body>
+</html>

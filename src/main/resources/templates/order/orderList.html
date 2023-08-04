@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="fragments/header :: header_body"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container mt-md-5 mt-2">
+                <div th:replace="fragments/userheader :: user_header_body"></div>
+                <div class="row small-md">
+                    <div th:replace="~{fragments/profileNavigator :: profile_navigation}"></div>
+                    <div class="col-12 col-md-9 col-lg-8 off-set-lg-1">
+                        <div class="row text-center bg-light py-md-4 py-2">
+                            <div class="col-4 text-uppercase text-sm">Order #</div>
+                            <div class="col-2 text-uppercase text-sm">Date</div>
+                            <div class="col-2 text-uppercase text-sm">Price</div>
+                            <div class="col-2 text-uppercase text-sm">Quantity</div>
+                            <div class="col-2 text-uppercase text-sm">Action</div>
+                        </div>
+                        <div class="row text-center py-md-4 py-2" th:each="ord: ${orders}">
+                            <div class="col-4"><strong th:text="${ord.orderId()}"></strong></div>
+                            <div class="col-2" th:text="${ord.orderDate().toLocalDate()}"></div>
+                            <div class="col-2" th:text="${ord.totalPrice()}"></div>
+                            <div class="col-2" th:text="${ord.status()}">Quantity</div>
+                            <div class="col-2">
+                                <a class="btn btn-outline-dark btn-sm" th:href="@{/user/orders/{orderId}(orderId=${ord.orderId()})}">VIEW</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+
+        </section>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer_body"></div>
+</body>
+</html>

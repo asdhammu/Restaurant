@@ -1,0 +1,95 @@
+<div id="header" th:fragment="header_body">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="d-flex my-brand">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar"
+                        aria-controls="offcanvasDarkNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand mx-3 m-fs mr-auto" th:href="@{/}">My Restaurant</a>
+                <div class="margin-left-auto mr-toggle-mobile d-flex navbar-nav flex-row align-items-center">
+                    <div class="nav-item mx-2 d-flex" id="m-cartNavLink">
+                        <a class="nav-link">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </a>
+                        <span class="badge">
+                            <span class="cart-count" th:text="${cartCount}"></span>
+                        </span>
+                    </div>
+                    <div class="nav-item mx-2">
+                        <a sec:authorize="isAnonymous()" class="nav-link" th:href="@{/login}"><i class="fa fa-user"></i></a>
+                        <div class="avatar" sec:authorize="isAuthenticated()">
+                            <a class="navbar-icon-link" id="userdetails" th:href="@{/user/profile}">
+                                <div th:unless="${#authentication.principal.imgUrl != null}" class="no-avatar">
+                                    <span th:utext="${#strings.substring(#authentication.principal.firstName,0,1)}"></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                 aria-labelledby="offcanvasDarkNavbarLabel" th:if="${loginPage == null || !loginPage}">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">My Restaurant</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                            aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body align-items-center">
+                    <form class="my-2 my-lg-0 w-100 mx-5 mr-toggle">
+                        <input id="searchProduct" class="form-control search-box w-100" type="search"
+                               placeholder="Search"
+                               aria-label="Search">
+                    </form>
+                    <ul class="navbar-nav margin-left-auto me-2">
+                        <li class="nav-item active mx-1 m-fs">
+                            <a class="nav-link" th:href="@{/menu}">Menu</a>
+                        </li>
+                        <li class="nav-item mr-toggle-mobile">
+                            <form th:action="@{/logout}" method="post" class="nav-link m-fs mx-1">
+                                <input class="dropdown-item" type="submit" value="Sign out">
+                            </form>
+                        </li>
+                        <li class="nav-item ms-3 m-fs d-flex mr-toggle" id="cartNavLink">
+                            <a class="nav-link">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </a>
+                            <span class="badge">
+                                <span class="cart-count" th:text="${cartCount}">
+                            </span>
+                        </span>
+                        </li>
+                        <li class="nav-item mx-3 d-flex align-items-center m-fs mr-toggle">
+                            <a sec:authorize="isAnonymous()" class="nav-link" th:href="@{/login}"><i
+                                    class="fa fa-user"></i></a>
+                            <div class="avatar" sec:authorize="isAuthenticated()">
+                                <a class="navbar-icon-link" id="userdetails" data-bs-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    <div th:unless="${#authentication.principal.imgUrl != null}" class="no-avatar">
+                                        <span th:utext="${#strings.substring(#authentication.principal.firstName,0,1)}"></span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end animate slideIn"
+                                     aria-labelledby="userdetails">
+                                    <a class="dropdown-item" th:href="@{/user/profile}">Profile</a>
+                                    <a class="dropdown-item" th:href="@{/user/orders}">Order</a>
+                                    <form th:action="@{/logout}" method="post">
+                                        <input class="dropdown-item" type="submit" value="Sign out">
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid py-1">
+        <input id="searchProductMobile" class="form-control w-100 h-100 mr-toggle-mobile" type="search"
+               placeholder="Search"
+               aria-label="Search">
+    </div>
+    <div th:replace="~{modal/cartCanvas :: cartCanvas_body}"></div>
+</div>

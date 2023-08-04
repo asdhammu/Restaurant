@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1690137730-init-schema" author="my-restaurant">
+        <sql dbms="postgresql">
+            CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        </sql>
+        <createTable tableName="country">
+            <column name="country_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="iso_code_2" type="varchar2(10)"/>
+            <column name="iso_code_3" type="varchar2(10)"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+
+        <createTable tableName="state">
+            <column name="state_id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar2(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="varchar2(100)"/>
+            <column name="abbreviation" type="varchar2(100)"/>
+            <column name="country_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="state" baseColumnNames="country_id" constraintName="fK_state_country_id"
+                                 referencedTableName="country"
+                                 referencedColumnNames="country_id"/>
+        <createTable tableName="carousel">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="priority" type="int"/>
+            <column name="height" type="int"/>
+            <column name="width" type="int"/>
+            <column name="img_url" type="varchar2(1000)"/>
+            <column name="title" type="varchar2(255)"/>
+            <column name="description" type="varchar2(1000)"/>
+            <column name="updated" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="created" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

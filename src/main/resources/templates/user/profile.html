@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head th:insert="~{fragments/head :: head}"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="~{fragments/header :: header_body}"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container mt-md-5 mt-2">
+                <div th:replace="fragments/userheader :: user_header_body"></div>
+                <div class="row small-md">
+                    <div th:replace="~{fragments/profileNavigator :: profile_navigation}"></div>
+                    <div class="col-12 col-md-9 col-lg-8 off-set-lg-1">
+                        <!--<div class="alert alert-warning alert-dismissible fade show" th:if="${cartItemRemovedMsg != null}" role="alert">
+                            <span th:text="${cartItemRemovedMsg}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>-->
+                        <div class="alert alert-info alert-dismissible fade show" th:if="${message != null}" role="alert">
+                            <span th:text="${message}"></span>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <form class="row" th:action="@{/user/profile}" th:object="${userForm}" action="#" th:method="POST">
+                            <div class="col-12 col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label" for="firstName">First Name *</label>
+                                    <input class="form-control form-control-sm" id="firstName" type="text"
+                                           placeholder="First name"
+                                           th:field="*{firstName}"
+                                           th:classappend="${#fields.hasErrors('firstName') ? 'is-invalid': ''}">
+                                    <span th:if="${#fields.hasErrors('firstName')}"
+                                          th:errors="*{firstName}" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="mb-4">
+                                    <label class="form-label" for="lastName">Last Name *</label>
+                                    <input class="form-control form-control-sm" id="lastName" type="text"
+                                           placeholder="Last name"
+                                           th:field="*{lastName}"
+                                           th:classappend="${#fields.hasErrors('lastName') ? 'is-invalid': ''}">
+                                    <span th:if="${#fields.hasErrors('lastName')}"
+                                          th:errors="*{lastName}" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-4">
+                                    <label class="form-label" for="email">Email Id</label>
+                                    <input class="form-control form-control-sm" id="email" type="text"
+                                           placeholder="Email"
+                                           th:value="${emailId}"
+                                           disabled>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <button class="btn btn-dark" type="submit">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="~{fragments/footer :: footer_body}"></div>
+</body>
+</html>

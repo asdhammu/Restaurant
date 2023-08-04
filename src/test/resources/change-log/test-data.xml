@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="test-data" author="my-restaurant-test">
+        <sql>
+            insert into user_role(role_id, created, updated, name) values (1, current_date, current_date, 'USER');
+            insert into user_role(role_id, created, updated, name) values (2, current_date, current_date, 'ADMIN');
+
+            insert into category (category_id, created, updated, name, img_url) values (1, current_date, current_date, 'Category 1','');
+            insert into category (category_id, created, updated, name, img_url) values (2, current_date, current_date, 'Category 2','');
+            insert into category (category_id, created, updated, name, img_url) values (3, current_date, current_date, 'Category 3','');
+
+            insert into country(country_id, created, updated, name) values (1, current_date, current_date, 'USA');
+            insert into country(country_id, created, updated, name) values (2, current_date, current_date, 'India');
+
+            insert into state(state_id, abbreviation, code, name, country_id) values (1, 'TX', 'TX', 'Texas', 1);
+            insert into state(state_id, abbreviation, code, name, country_id) values (2, 'AK', 'AK', 'Arkansas', 1);
+            insert into state(state_id, abbreviation, code, name, country_id) values (3, 'CA', 'CA', 'California', 1);
+            insert into state(state_id, abbreviation, code, name, country_id) values (4, 'PA', 'PA', 'Punjab', 2);
+            insert into state(state_id, abbreviation, code, name, country_id) values (5, 'HR', 'HR', 'Haryana', 2);
+
+            insert into user_info (user_id, created, updated, email_id, is_enabled, first_name, img_url, last_name, is_locked, is_non_expired, password, phone, auth_provider, username)
+            values (1, current_date, current_date, 'test@sdf.com', true, 'firstName', '','lastName', false, false, 'Hello3193#', '9876543210', null, 'username');
+            insert into users_roles (user_id, role_id) VALUEs (1, 1);
+        </sql>
+    </changeSet>
+</databaseChangeLog>

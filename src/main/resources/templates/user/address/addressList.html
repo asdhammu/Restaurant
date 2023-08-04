@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6" lang="en">
+<head th:replace="fragments/head :: head"></head>
+<body th:attr="data-bs-theme=${theme}">
+<div th:replace="fragments/header :: header_body"></div>
+<div class="wrapper">
+    <div class="content">
+        <section>
+            <div class="container mt-md-5 mt-2">
+                <div th:replace="fragments/userheader :: user_header_body"></div>
+                <div class="row small-md">
+                    <div th:replace="~{fragments/profileNavigator :: profile_navigation}"></div>
+                    <div class="col-12 col-md-9 col-lg-8 off-set-lg-1">
+                        <div class="row">
+                            <div class="col-12" th:if="${message != null}">
+                                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                                    <span th:text="${message}"></span>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-6" th:each="address: ${addresses}">
+                                <div class="card card-lg bg-light mb-5">
+                                    <div class="card-body">
+                                        <h6 class="mb-3">
+                                            <span th:text="${address.type()}"></span>
+                                            <span th:if="${address.myDefault()}"><strong>(DEFAULT)</strong></span>
+                                        </h6>
+                                        <p class="text-muted mb-0">
+                                            <span th:text="${address.firstName()}"></span>
+                                            <span th:text="${address.lastName()}"></span><br/>
+                                            <span th:text="${address.street1()}"></span><br/>
+                                            <span th:text="${address.street2()}"></span><br/>
+                                            <span th:text="${address.state()}"></span><br/>
+                                            <span th:text="${address.postalCode()}"></span><br/>
+                                            <span th:text="${address.country()}"></span><br/>
+                                            <span th:text="${address.phoneNumber()}"></span><br/>
+                                        </p>
+                                        <div class="card-action card-action-end d-flex">
+                                            <a class="btn btn-xs btn-circle btn-white-primary"
+                                               th:href="@{/user/address/edit/{addressId}(addressId=${address.id()})}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                            <form th:action="@{/user/address/delete}"
+                                                  th:method="POST">
+                                                <input name="addressId" id="addressId" th:value="${address.id()}"
+                                                       type="hidden">
+                                                <button class="btn btn-xs btn-circle btn-white-primary">
+                                                    <i class="fa fa-remove"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <a class="btn w-100 btn-lg btn-outline-border mb-5" th:href="@{/user/address/add}">Add
+                                    Address <i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer_body"></div>
+</body>
+</html>

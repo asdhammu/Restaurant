@@ -1,0 +1,30 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" th:content="${_csrf.token}">
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title th:text="${pageTitle}"></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
+    <!--<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link href="https://code.jquery.com/ui/1.13.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/autocomplete.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vendor/fontawesome/css/fontawesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vendor/fontawesome/css/brands.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/vendor/fontawesome/css/solid.min.css}"/>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/helper.js}"></script>
+    <script type="text/javascript" th:src="@{/js/validation.js}"></script>
+    <script type="text/javascript" th:src="@{/js/cart.js}"></script>
+
+</head>
